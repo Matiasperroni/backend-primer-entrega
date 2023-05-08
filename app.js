@@ -20,15 +20,26 @@ class ProductManager {
         );
         producto.id = this.id;
         this.id++;
-        let codigoExistente = false;
+        let codigoExistenteOIncompleto = false;
         for (let i = 0; i < products.length; i++) {
             if (products[i].code === producto.code) {
                 console.log("Este codigo ya existe");
-                codigoExistente = true;
+                codigoExistenteOIncompleto = true;
+                break;
+            } else if (
+                producto.title === undefined ||
+                producto.description === undefined ||
+                producto.price === undefined ||
+                producto.thumbnail === undefined ||
+                producto.code === undefined ||
+                producto.stock === undefined
+            ) {
+                console.log("Se deben completar todos los campos");
+                codigoExistenteOIncompleto = true;
                 break;
             }
         }
-        if (!codigoExistente) {
+        if (!codigoExistenteOIncompleto) {
             products.push({
                 title: producto.title,
                 description: producto.description,
@@ -58,6 +69,9 @@ class ProductManager {
 // producto.addProduct("moto", "soy una moto", 20, "soy una img", "sdf", 10);
 // producto.addProduct("auto", "soy un auto", 20, "soy una img", "jpk", 10);
 // producto.addProduct("bici", "soy una bici", 20, "soy una img", "abc", 10);
-// producto.getProductById(5);
+// producto.addProduct("bici", "soy una bici", 20, "soy una img", "iii");
+// producto.addProduct("soy una bici", 20, "soy una img", "sss", 10);
+// producto.addProduct("auto", 20, "soy una img", "ttt", 10);
+// producto.getProductById(3);
 
 // producto.getProducts();
